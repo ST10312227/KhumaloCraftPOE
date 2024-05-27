@@ -1,0 +1,111 @@
+﻿@model List<KhumaloCraftPOE.Models.userTable>
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhumaloCraft - About Us</title>
+    <style>
+        body {
+            background-image: url('/Images/crafting.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #0000FF;
+        }
+
+    </style>
+    <style>
+
+        .jumbotron {
+            background-color: #f8f9fa;
+        }
+
+        .team-member {
+            margin-bottom: 40px;
+        }
+
+            .team-member img {
+                max-width: 100%;
+                height: auto;
+            }
+    </style>
+</head>
+<body>
+    <form action="About" method="post">
+        <h2>Please Register Below</h2>
+        <input type="text" name="Name" placeholder="Name" required>
+        <input type="text" name="Surname" placeholder="Surname" required>
+        <input type="text" name="Email" placeholder="example@gmail.com" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<body>
+
+
+
+
+
+
+    <div class="container mt-5">
+
+        <h1 class="display-4">About KhumaloCraft</h1>
+        <p class="lead">Crafting Excellence, One Piece at a Time</p>
+        <hr class="my-4">
+        <p>At KhumaloCraft, we are passionate about preserving traditional craftsmanship while embracing innovation. Our artisans meticulously handcraft each piece, celebrating the beauty of natural materials and the artistry of the human hand.</p>
+        <p>With a commitment to quality and sustainability, we strive to create timeless works of art that enrich lives and inspire creativity.</p>
+
+
+
+        <h2 class="mb-4">Meet the Team</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="/Images/JamesKhumalo.jpg" alt="Team Member 1">
+                    <h4>James Khumalo</h4>
+                    <p>Founder & Artisan</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="/Images/KarenBetty.jpg" alt="Team Member 2">
+                    <h4>Karen Betty</h4>
+                    <p>Designer & Craftsman</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="/Images/JTerry.jpg" alt="Team Member 3">
+                    <h4>John Terry</h4>
+                    <p>Master Artisan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - KhumaloCraft</title>
+
+</head>
+<body>
+
+    <div class="mt-5">
+        <h3>Contact Information</h3>
+        <p><strong>Email:</strong> <strong>admin@khumalocrafts.com</strong></p>
+        <p><strong>Telephone Number:</strong> <strong>0216826557</strong></p>
+        <p><strong>Address:</strong> <strong>135 Main Road, Cape Town, Western Cape 7768</strong></p>
+
+    </div>
+
+</body>
+</html>

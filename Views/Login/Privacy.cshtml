@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+    var userID = ViewData["userID"];
+    var products = ViewData["Products"] as List<KhumaloCraftPOE.Models.productTable>;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - KhumaloCraftPOE</title>
+    <style>
+        body {
+            background-image: url('/Images/crafting.gif'); /* Change the path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #0000FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        @if (userID != null) // Add a null check for userID
+        {
+            <p>User ID: @userID</p>
+        }
+
+        <h1>@ViewData["Title"]</h1>
+
+        <div class="text-center">
+            <h1 class="display-4">Login Page</h1>
+            <p>If you don't have an account <a href="https://localhost:7056/User/About">Sign Up</a> for a new account.</p>
+        </div>
+
+        <form asp-controller="Login" asp-action="Privacy" method="post">
+            <p>Please enter your first name and email:</p>
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="email" placeholder="example@gmail.com" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="mt-5">
+            <h4>Please Contact Us Should You Have Any Queries!</h4>
+            <h3>Contact Information</h3>
+            <p><strong>Email:</strong> <strong>admin@khumalocrafts.com</strong></p>
+            <p><strong>Telephone Number:</strong> <strong>0216826557</strong></p>
+            <p><strong>Address:</strong> <strong>135 Main Road, Cape Town, Western Cape 7768</strong></p>
+        </div>
+    </div>
+</body>
+</html>

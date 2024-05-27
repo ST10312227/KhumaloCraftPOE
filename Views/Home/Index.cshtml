@@ -1,0 +1,138 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var userID = ViewData["userID"];
+    var products = ViewBag.Products as List<KhumaloCraftPOE.Models.productTable>;
+    var users = ViewBag.Users as List<KhumaloCraftPOE.Models.userTable>;
+    var userTransactions = ViewBag.UserTransactions as List<KhumaloCraftPOE.Models.transactionTable>;
+}
+
+<style>
+    body {
+        background-image: url('/Images/buildingshape.gif');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #0000FF;
+    }
+
+    table {
+        color: #0000FF;
+    }
+
+    table th, table td {
+        color: #0000FF;
+    }
+</style>
+
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Welcome To KhumaloCraft</h1>
+        <img src="/Images/khumalocraft logo.png" class="card-img-top" alt="Craft 1" style="max-width: 400px; max-height: 400px;">
+    </div>
+
+    @if (userID == null || (int)userID == 0)
+    {
+        <div class="text-center">
+            <p>Please Login or Register to Purchase Products</p>
+            <p />
+            <p />
+            <a href="/Login/Privacy" class="btn btn-primary">Login</a>
+        </div>
+    }
+    else
+    {
+        @if (users != null && (int)userID > 0)
+        {
+            <h2>User Details:</h2>
+            @foreach (var user in users.Where(u => u.UserID == (int)userID))
+            {
+                <p>UserID: @user.UserID</p>
+                <p>Name: @user.Name</p>
+                <p>Surname: @user.Surname</p>
+                <p>Email: @user.Email</p>
+                <hr>
+
+                <h5>Previous Transactions Made By You:</h5>
+                @if (userTransactions.Any())
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Product ID</th>
+                                <th>Price</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var transaction in userTransactions)
+                            {
+                                <tr>
+                                    <td>@transaction.TransactionID</td>
+                                    <td>@transaction.ProductID</td>
+                                    <td>@transaction.Price</td>
+                                    <td>@transaction.Date.ToString("yyyy-MM-dd")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>No transactions found.</p>
+                }
+            }
+        }
+        else if ((int)userID == 0)
+        {
+            <p>Incorrect details provided.</p>
+        }
+
+        <h2>All Products For Purchase:</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Availability</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (products != null)
+                {
+                    foreach (var product in products)
+                    {
+                        <tr>
+                            <td>@product.ProductID</td>
+                            <td>@product.Name</td>
+                            <td>@product.Price</td>
+                            <td>@product.Category</td>
+                            <td>@product.Availability</td>
+                            <td>
+                                @if (product.Availability == "Available") 
+                                {
+                                    <form asp-action="AddToCart" asp-controller="Transaction" method="post">
+                                        <input type="hidden" name="productID" value="@product.ProductID" />
+                                        <input type="hidden" name="userID" value="@userID" /> <!-- Pass the userID as a hidden field -->
+                                        <button type="submit">Purchase</button>
+                                    </form>
+                                }
+                                
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <div class="text-center mt-4">
+            <form asp-action="Logout" asp-controller="Login" method="post">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "My Work";
+    var products = ViewData["Products"] as List<KhumaloCraftPOE.Models.productTable>;
+    var transactions = ViewData["Transactions"] as List<KhumaloCraftPOE.Models.transactionTable>;
+}
+
+<style>
+    body {
+        background-image: url('/Images/buildingshape.gif');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #0000FF;
+    }
+
+    table {
+        color: #0000FF;
+    }
+
+        table th,
+        table td {
+            color: #0000FF;
+        }
+
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhumaloCraft - My Work</title>
+
+</head>
+<body>
+    <h2>All Products:</h2>
+
+    <tbody>
+        @if (products != null && products.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Availability</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in products)
+                    {
+                        <tr>
+                            <td>@product.ProductID</td>
+                            <td>@product.Name</td>
+                            <td>@product.Price</td>
+                            <td>@product.Category</td>
+                            <td>@product.Availability</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No products found.</p>
+        }
+
+        <h1>MyWork</h1>
+
+        <form action="MyWork" method="post">
+            <p>Insert new products</p>
+            <input type="text" name="Name" placeholder="Name" required>
+            <input type="text" name="Price" placeholder="Price" required>
+            <input type="text" name="Category" placeholder="Category" required>
+            <input type="text" name="Availability" placeholder="Availability" required>
+            <button type="submit">Submit</button>
+        </form>
+</body>
+</html>
+
+<p></p>
+<p></p>
+
+<h2>All Transactions:</h2>
+@if (transactions != null && transactions.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>User ID</th>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Price</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in transactions)
+            {
+                <tr>
+                    <td>@transaction.TransactionID</td>
+                    <td>@transaction.UserID</td>
+                    <td>@transaction.ProductID</td>
+                    <td>@transaction.Name</td>
+                    <td>@transaction.Surname</td>
+                    <td>@transaction.Email</td>
+                    <td>@transaction.Price</td>
+                    <td>@transaction.Date.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No transactions found.</p>
+}
+
